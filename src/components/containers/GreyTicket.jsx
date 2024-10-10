@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-const GreyTicket = ({ name, icon: Icon, description, type }) => {
-  // State to handle zoom level
+
+const Cmntr = ({ name, comment, type }) => {
   const [zoomLevel, setZoomLevel] = useState(window.devicePixelRatio || 1);
 
   // Effect to detect zoom level changes
@@ -18,31 +18,22 @@ const GreyTicket = ({ name, icon: Icon, description, type }) => {
     };
   }, []);
 
-  // Adjust size based on zoom level
   const calculateSize = (baseSize) => baseSize / zoomLevel;
-
-  // Logging the type for debugging
-  console.log("Ticket Type:", type);
 
   return (
     <div
-      className="grey-ticket"
       style={{
-        height: `${calculateSize(type === "Courses" ? 8 : 7)}rem`, // Keep height dynamic based on type
+        height: `${calculateSize(5)}rem`, // Set a dynamic height based on type
         display: "flex",
         padding: "var(--Spacing-M, 24px) var(--Spacing-S, 16px)",
         justifyContent: "center",
-        alignItems: "flex-start",
-        gap: "var(--Spacing-XS, 8px)",      
-        borderRadius: "var(--Spacing-S, 16px)",
-        background: "var(--light-blue-accent-2, #EAEAF0)",
+        alignItems: "center",
+        borderRadius: "0 0 var(--Spacing-S, 16px) var(--Spacing-S, 16px)",
+        background: "var(--light-blue-accent, #6679CC)",
+        alignSelf: "stretch",
+        overflow: "hidden", // Prevent overflow
       }}
     >
-      <Icon
-        className="icon"
-        size={calculateSize(32)}
-        aria-label={`${name} icon`}
-      />
       <div
         style={{
           display: "flex",
@@ -50,16 +41,15 @@ const GreyTicket = ({ name, icon: Icon, description, type }) => {
           alignItems: "flex-start",
           gap: "var(--Spacing-S, 16px)",
           flex: "1 0 0",
-          alignSelf: "stretch",
+          width: "100%", // Ensure this fills the container
         }}
       >
         <h6
-          className="name"
           style={{
             color: "var(--light-blue-text, #0A0A0F)",
             alignSelf: "stretch",
             fontFamily: "'Space Grotesk'",
-            fontSize: "24px",
+            fontSize: "150%",
             fontStyle: "normal",
             fontWeight: "700",
             lineHeight: "133.333%",
@@ -68,21 +58,22 @@ const GreyTicket = ({ name, icon: Icon, description, type }) => {
           {name}
         </h6>
         <p
-          className="description"
           style={{
             color: "var(--light-blue-text, #0A0A0F)",
             fontFamily: "var(--Text-font-family, 'Space Grotesk')",
-            fontSize: "19.2px",
-            fontStyle: "normal",
+            fontSize: "120%",
             fontWeight: "400",
-            lineHeight: "24px; /* 125% */</div",
+            lineHeight: "1.5", // Set line height for better spacing
+            fontStyle: "normal",
+            width: "100%", // Make sure it occupies full width
+            overflowWrap: "break-word", // Ensure long words break properly
           }}
         >
-          {description}
+          {comment}
         </p>
       </div>
     </div>
   );
 };
 
-export default GreyTicket;
+export default Cmntr;

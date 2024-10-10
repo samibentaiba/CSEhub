@@ -1,7 +1,7 @@
-// Story.jsx
 import React, { useEffect, useState } from "react";
 import Cmntr from "./Cmntr";
 import Imgcmntr from "./Imgcmntr";
+
 const Story = ({ name, image, comment }) => {
   // State to handle zoom level
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -27,7 +27,7 @@ const Story = ({ name, image, comment }) => {
   return (
     <div
       style={{
-        background: "lightgray 50% ",
+        background: "lightgray 50%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -37,7 +37,7 @@ const Story = ({ name, image, comment }) => {
       }}
     >
       <Imgcmntr image={image} calculateSize={calculateSize} />
-      <Cmntr name={name} comment={comment} calculateSize={calculateSize} />
+      <Cmntr name={name} comment={comment} />
     </div>
   );
 };
